@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de contact</title>
+    <style>
+        body {
+            background-image: url('{% static "main/images/image1.jpg" %}');
+            background-size: cover; /* Pour couvrir toute la page */
+            background-position: center; /* Pour centrer l'image */
+            background-repeat: no-repeat; /* Pour ne pas répéter l'image */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Couleur de fond par défaut pour des cas où l'image de fond ne se charge pas */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            background-color: rgba(46, 139, 87, 0.8); /* Fond vert foncé semi-transparent */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet visuel */
+            text-align: center;
+            margin: 50px auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: white; /* Couleur du texte */
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Ombre pour rendre le texte plus lisible */
+        }
+
+        p {
+            color: white; /* Couleur du texte */
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            color: white; /* Couleur du texte */
+            background-color: #007bff; /* Couleur du bouton */
+            border: none;
+            border-radius: 5px; /* Bords arrondis */
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur */
+        }
+
+        .button:hover {
+            background-color: #0056b3; /* Couleur du bouton au survol */
+        }
+
+        .footer {
+            background-color: #2E8B57; /* Couleur vert foncé */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet visuel */
+            margin-top: auto;
+        }
+
+        .footer p {
+            color: white; /* Couleur du texte */
+            font-size: 0.9em;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Merci pour votre suggestion !</h1>
+        <p>Votre suggestion a été envoyée avec succès.</p>
+        <p>Nous vous remercions de votre contribution.</p>
+        <a href="{% url 'home' %}" class="button">Retour à l'accueil</a>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 TIMINIKALA.sa. Tous droits réservés.</p>
+    </div>
+</body>
+</html>

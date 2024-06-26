@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Entrepôts - TIMINIKALA.sa</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    <style>
+        body::before {
+            content: '';
+            background-image: url('{% static "main/images/image1.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(10px); /* Appliquer le flou */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Mettre en arrière-plan */
+        }
+
+        header {
+            background-color: seagreen; /* vert marin */
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            flex: 1;
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: seagreen;
+        }
+
+        .entrepot-details {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-out;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .entrepot-details:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .entrepot-details h2 {
+            margin-top: 0;
+            color: #32CD32; /* vert lime */
+        }
+
+        .entrepot-details p {
+            margin: 5px 0;
+        }
+
+        .footer {
+            background-color: seagreen;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .footer-title {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Bouton de retour en haut */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            background-color: seagreen;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        #back-to-top:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    {% include 'main/header.html' %}
+
+    <div class="container">
+        <h1>Nos Entrepôts</h1>
+        <ul>
+            {% for entrepot in entrepots %}
+            <li>
+                <div class="entrepot-details">
+                    <h2>{{ entrepot.name }}</h2>
+                    <p><strong>Localisation:</strong> {{ entrepot.location }}</p>
+                    <p><strong>Manager:</strong> {{ entrepot.manager_name }}</p>
+                    <p><strong>Contact:</strong> {{ entrepot.phone }}</p>
+                    <p><strong>Adresse mail:</strong> {{ entrepot.email }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 TIMINIKALA.sa. Tous droits réservés.</p>
+    </div>
+
+    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Fonction pour remonter en haut de la page
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Afficher ou cacher le bouton en fonction de la position de défilement
+        window.onscroll = function() {
+            var backToTopButton = document.getElementById('back-to-top');
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>

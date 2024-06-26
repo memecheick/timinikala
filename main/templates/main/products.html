@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits - TIMINIKALA.sa</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        header {
+            background-color: seagreen;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .btn-primary.details-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: seagreen;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1; /* Pour placer le contenu au-dessus de l'image de fond */
+            padding-top: 50px; /* Ajustement pour l'espace de la barre de navigation */
+        }
+
+        .footer {
+            background-color: seagreen;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .footer-title {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+        }
+
+        .product-card {
+            margin-bottom: 20px;
+            overflow: hidden; /* Pour cacher le contenu qui déborde */
+            transition: transform 0.3s; /* Animation de transition pour l'effet de zoom */
+        }
+
+        .product-card:hover {
+             transform: scale(1.1); /* Zoom de 110% sur survol */
+        }
+
+        .product-image {
+             width: 100%;
+             height: auto;
+             transition: transform 0.3s; /* Animation de transition pour l'effet de zoom */
+        }
+
+        .product-card:hover .product-image {
+             transform: scale(1.1); /* Zoom de 110% sur survol */
+        }
+
+        .product-title {
+             text-align: center;
+             color: rgba(144, 238, 144, 1); /* Vert clair */
+             font-size: 2.0em; /* Agrandir encore plus la taille */
+             text-shadow: 2px 2px 4px rgba(0.5, 0, 0, 0.5); /* Ajouter une ombre */
+        }
+
+        .product-intro {
+            text-align: center;
+            color: white; /* Couleur du texte */
+            margin-top: 20px; /* Espacement du haut */
+            font-size: 1.2em; /* Taille de la police */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombre de texte */
+        }
+
+        /* Style pour l'arrière-plan flouté */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Pour placer l'arrière-plan en dessous de tout */
+            filter: blur(10px); /* Appliquer un flou à l'image */
+            background-image: url('{% static "main/images/image1.jpg" %}'); /* Chemin vers votre image floutée */
+            background-size: cover; /* Pour couvrir toute la page */
+            background-position: center; /* Pour centrer l'image */
+            background-repeat: no-repeat; /* Pour ne pas répéter l'image */
+        }
+
+        /* Bouton de retour en haut de la page */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: seagreen;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            display: none; /* Caché par défaut */
+            z-index: 100; /* Au-dessus de tout */
+        }
+
+        .back-to-top.show {
+            display: block; /* Afficher lorsque la classe 'show' est ajoutée */
+        }
+    </style>
+</head>
+<body>
+    <!-- Arrière-plan flouté -->
+    <div class="background"></div>
+
+    {% include 'main/header.html' %}
+    <div class="container mt-5">
+        <h1 class="page-title">Nos Produits</h1>
+        <p class="product-intro">
+            Découvrez notre sélection de produits de haute qualité soigneusement choisis pour répondre à tous vos besoins. Parcourez notre gamme et trouvez les articles parfaits pour vous.
+        </p>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-6 product-card">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ product.images.url }}" class="card-img-top product-image" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title product-title">{{ product.name }}</h5>
+                        <a href="{% url 'products_detail' product.id %}" class="btn btn-primary details-button">Détails</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="footer">
+            <p class="footer-title">&copy; 2024 TIMINIKALA.sa. Tous droits réservés.</p>
+        </div>
+    </div>
+    <!-- Bouton de retour en haut de la page -->
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    <script>
+        // Fonction pour faire défiler vers le haut
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Afficher le bouton lorsque l'utilisateur fait défiler vers le bas
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) { // Afficher le bouton après avoir fait défiler de 300px
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

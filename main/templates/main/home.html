@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - TIMINIKALA.sa</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Importation de la police Montserrat */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            overflow-x: hidden; /* Empêcher le défilement horizontal */
+        }
+
+        /* Appliquer une image de fond floutée à l'arrière-plan */
+        body::before {
+            content: '';
+            background-image: url('{% static "main/images/image1.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(10px); /* Appliquer le flou */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Mettre en arrière-plan */
+        }
+
+        header {
+            background-color: seagreen; /* vert marin */
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        h1 {
+            color: Gold;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            height: 400px;
+            position: relative;
+            border-radius: 20px; /* Bord arrondi */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour effet visuel */
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Assure que l'image couvre toute la zone du carrousel sans se déformer */
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 20px; /* Bord arrondi pour les images */
+        }
+
+        .carousel img.active {
+            opacity: 1;
+        }
+
+        .build_box {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            text-align: left;
+            color: white;
+            z-index: 2; /* Assure que le texte est au-dessus des images */
+            background-color: rgba(0, 0, 0, 0); /* Fond semi-transparent pour améliorer la lisibilité */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        section {
+            padding: 20px;
+            background-color: rgba(144, 238, 144, 0.8); /* Fond vert clair semi-transparent */
+            margin: 20px auto;
+            width: 60%; /* Élargir les sections */
+            max-width: 1000px; /* Limiter la largeur maximale */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        section h2 {
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .footer {
+            background-color: seagreen;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .footer-title {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            section {
+                width: 90%; /* Réduire légèrement la largeur pour les petits écrans */
+            }
+
+            .carousel {
+                height: 200px;
+            }
+        }
+
+        /* Bouton de retour en haut */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            background-color: seagreen;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        #back-to-top:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    {% include 'main/header.html' %} <!-- Inclusion de l'en-tête commun -->
+    <div class="carousel">
+        <div class="build_box text_align_left">
+           <h1>
+             TIMINIKA SA
+           </h1>
+           <h2>
+             <span class="orange">"De la canne à Sucre aux délices sucrés"</span>
+           </h2>
+           <p>
+             "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,"
+           </p>
+        </div>
+
+        <img src="{% static 'main/images/image1.jpg' %}" alt="Image 1" class="active">
+        <img src="{% static 'main/images/image2.jpg' %}" alt="Image 2">
+        <img src="{% static 'main/images/image3.jpg' %}" alt="Image 3">
+        <img src="{% static 'main/images/image4.jpg' %}" alt="Image 4">
+        <img src="{% static 'main/images/image5.jpg' %}" alt="Image 5">
+        <img src="{% static 'main/images/image6.jpg' %}" alt="Image 6">
+        <img src="{% static 'main/images/image7.jpg' %}" alt="Image 7">
+        <img src="{% static 'main/images/image8.jpg' %}" alt="Image 8">
+        <img src="{% static 'main/images/image9.jpg' %}" alt="Image 9">
+    </div>
+
+    <!-- Contenu de la page -->
+    <div class="content">
+        <section>
+            <h2>Présentation de l'entreprise</h2>
+            <p> Le logo de notre entreprise, TIMINIKALA, présente une silhouette élégante de 3 cannes à sucre stylisée en couleur verte sur un fond blanc. La forme organique de la canne à sucre évoque la nature et l'authenticité de nos produits. La couleur verte symbolise la fraîcheur et la vitalité, tandis que le doré représente la qualité et la richesse. Le texte "TIMINIKALA" est en jaune vif, avec le slogan "De la canne à sucre aux délices sucrés" en orange en dessous, soulignant notre engagement à transformer la canne à sucre en produits sucrés délicieux. La typographie utilisée pour le nom 'TIMINIKALA' est moderne et légèrement arrondie, renforçant l'idée de convivialité. Dans l'ensemble, ce logo incarne notre engagement envers des produits naturels et de qualités, tout en reflétant une image moderne et accueillante.</p>
+        </section>
+        <section>
+            <h2>Mission de l'entreprise</h2>
+            <p> Le logo de notre entreprise, TIMINIKALA, présente une silhouette élégante de 3 cannes à sucre stylisée en couleur verte sur un fond blanc. La forme organique de la canne à sucre évoque la nature et l'authenticité de nos produits. La couleur verte symbolise la fraîcheur et la vitalité, tandis que le doré représente la qualité et la richesse. Le texte "TIMINIKALA" est en jaune vif, avec le slogan "De la canne à sucre aux délices sucrés" en orange en dessous, soulignant notre engagement à transformer la canne à sucre en produits sucrés délicieux. La typographie utilisée pour le nom 'TIMINIKALA' est moderne et légèrement arrondie, renforçant l'idée de convivialité. Dans l'ensemble, ce logo incarne notre engagement envers des produits naturels et de qualités, tout en reflétant une image moderne et accueillante.</p>
+        </section>
+        <section>
+            <h2>Objectif de l'entreprise</h2>
+            <p> Le logo de notre entreprise, TIMINIKALA, présente une silhouette élégante de 3 cannes à sucre stylisée en couleur verte sur un fond blanc. La forme organique de la canne à sucre évoque la nature et l'authenticité de nos produits. La couleur verte symbolise la fraîcheur et la vitalité, tandis que le doré représente la qualité et la richesse. Le texte "TIMINIKALA" est en jaune vif, avec le slogan "De la canne à sucre aux délices sucrés" en orange en dessous, soulignant notre engagement à transformer la canne à sucre en produits sucrés délicieux. La typographie utilisée pour le nom 'TIMINIKALA' est moderne et légèrement arrondie, renforçant l'idée de convivialité. Dans l'ensemble, ce logo incarne notre engagement envers des produits naturels et de qualités, tout en reflétant une image moderne et accueillante.</p>
+        </section>
+    </div>
+
+    <!-- Bouton de retour en haut -->
+    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // JavaScript pour faire défiler les images une par une dans le carousel
+        const carousel = document.querySelector('.carousel');
+        const images = carousel.querySelectorAll('img');
+        let currentIndex = 0;
+
+        function nextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(nextImage, 3000); // Change d'image toutes les 3 secondes (3000 millisecondes)
+
+        // JavaScript pour le bouton de retour en haut
+        window.addEventListener('scroll', function() {
+            const button = document.getElementById('back-to-top');
+            if (window.pageYOffset > 300) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <div class="footer">
+        <p class="footer-title">&copy; 2024 TIMINIKALA.sa. Tous droits réservés.</p>
+    </div>
+</body>
+</html>

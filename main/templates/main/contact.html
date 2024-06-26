@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - TIMINIKALA.sa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Appliquer une image de fond au corps de la page */
+        body {
+            background-image: url('{% static "main/images/image1.jpg" %}');
+            background-size: cover; /* Pour couvrir toute la page */
+            background-position: center; /* Pour centrer l'image */
+            background-repeat: no-repeat; /* Pour ne pas répéter l'image */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Couleur de fond par défaut pour des cas où l'image de fond ne se charge pas */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: seagreen;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon a {
+            color: white;
+            font-size: 36px;
+            text-decoration: none;
+        }
+
+        .social-icon a:hover {
+            color: #ccc;
+        }
+
+        .social-icon p {
+            margin-top: 10px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Couleurs spécifiques pour chaque réseau social */
+        .social-icon.facebook {
+            background-color: #3b5998;
+        }
+
+        .social-icon.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .social-icon.tiktok {
+            background-color: #010101;
+        }
+
+        .social-icon.snapchat {
+            background-color: #fffc00;
+        }
+
+        .social-icon.email {
+            background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+        }
+
+        .footer {
+            background-color: seagreen;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .footer-title {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        p, h2 {
+            color: white;
+        }
+
+        .contact-section {
+            padding: 30px;
+            text-align: center;
+            background-color: rgba(46, 139, 87, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 30px auto;
+            max-width: 500px;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .contact-form form input,
+        .contact-form form textarea,
+        .contact-form form label {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .contact-form form input::placeholder,
+        .contact-form form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form form button {
+            padding: 12px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        .contact-form form button:hover {
+            background-color: #34495e;
+        }
+
+        /* Bouton pour remonter en haut de page */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background-color: seagreen;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: none; /* Le bouton est caché par défaut */
+            transition: opacity 0.4s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 999; /* Assure que le bouton reste au-dessus du contenu */
+        }
+
+        .scroll-to-top:hover {
+            background-color: #3cb371;
+        }
+
+        .fas.fa-chevron-up {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'main/header.html' %}
+    <h1 class="page-title">Contactez-nous</h1>
+
+    <div class="social-icons">
+        <div class="social-icon facebook">
+            <a href="https://www.facebook.com/profile.php?id=61560399487466&mibextid=LQQJ4d" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <p>Facebook</p>
+        </div>
+        <div class="social-icon instagram">
+            <a href="https://www.instagram.com/TIMINIKALA" target="_blank"><i class="fab fa-instagram"></i></a>
+            <p>Instagram</p>
+        </div>
+        <div class="social-icon tiktok">
+            <a href="https://www.tiktok.com/@timinikala?_t=8nAgV6p0IIn&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <p>TikTok</p>
+        </div>
+        <div class="social-icon snapchat">
+            <a href="https://snapchat.com/t/jPBzAWPO" target="_blank"><i class="fab fa-snapchat-ghost"></i></a>
+            <p>Snapchat</p>
+        </div>
+        <div class="social-icon email">
+            <a href="mailto:info@timinikala.com"><i class="fas fa-envelope"></i></a>
+            <p>Email</p>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <h2>Boîte à suggestions</h2>
+        <div class="contact-form">
+            <form method="POST" action="{% url 'contact' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-title">&copy; 2024 TIMINIKALA.sa. Tous droits réservés.</p>
+    </div>
+
+    <!-- Bouton pour remonter en haut de page -->
+    <button onclick="topFunction()" id="scrollTopBtn" class="scroll-to-top" title="Remonter en haut de page"><i class="fas fa-chevron-up"></i></button>
+
+    <script>
+        // Script pour afficher/cacher le bouton de remontée en haut
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            var scrollTopBtn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        }
+
+        // Fonction pour remonter en haut de page en douceur
+        function topFunction() {
+            document.body.scrollTop = 0; // Pour Safari
+            document.documentElement.scrollTop = 0; // Pour Chrome, Firefox, IE et Opera
+        }
+    </script>
+</body>
+</html>
