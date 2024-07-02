@@ -1,23 +1,10 @@
-<header>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
     {% load static %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'main/images/logo.png' %}" alt="Logo TIMINIKALA.sa" class="logo animated-logo" style="max-height: 110px;">
-        </a>
-        <h1 class="header-title" style="color: #339933; font-size: 1.8em;">Bienvenue chez TIMINIKALA-SA</h1>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'home' %}">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'products' %}">Produits</a></li>
-                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'warehouse_list' %}">Entrepôts</a></li>
-                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'location_search' %}">Localisation</a></li>
-                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'contact' %}">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TIMINIKALA.sa</title>
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -83,4 +70,30 @@
             transform: scale(1.05);
         }
     </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'main/images/logo.png' %}" alt="Logo TIMINIKALA.sa" class="logo animated-logo" style="max-height: 110px;">
+        </a>
+        <h1 class="header-title" style="color: #339933; font-size: 1.8em;">Bienvenue chez TIMINIKALA-SA</h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'home' %}">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'products' %}">Produits</a></li>
+                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'warehouse_list' %}">Entrepôts</a></li>
+                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'location_search' %}">Localisation</a></li>
+                <li class="nav-item"><a class="nav-link animated-link" href="{% url 'contact' %}">À propos</a></li>
+            </ul>
+        </div>
+    </nav>
 </header>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
